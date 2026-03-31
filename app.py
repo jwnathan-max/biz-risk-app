@@ -68,7 +68,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown('<p class="main-title">우리 법인 리스크 1분 진단</p>', unsafe_allow_html=True)
-st.markdown('<p class="sub-title">장부 속 숨은 시한폭탄을 확인하고, <span class="highlight"></span>의 맞춤형 절세 리포트를 받아보세요.</p>', unsafe_allow_html=True)
+st.markdown('<p class="sub-title">장부 속 숨은 시한폭탄을 확인하고, <span class="highlight"></span>맞춤형 절세 리포트를 받아보세요.</p>', unsafe_allow_html=True)
 
 # 2. 진단 폼 시작
 with st.form("risk_form"):
