@@ -64,6 +64,7 @@ st.markdown("""
     .stButton>button { background-color: #0A1931; color: white; font-weight: bold; font-size: 18px; width: 100%; padding: 15px; border-radius: 5px; }
     .stButton>button:hover { background-color: #C9A84C; color: #0A1931; border-color: #C9A84C; }
     .privacy-text { font-size: 12px; color: #666; }
+    .privacy-popup-text { font-size: 13px; color: #555; line-height: 1.6; }
     </style>
 """, unsafe_allow_html=True)
 
@@ -102,10 +103,23 @@ with st.form("risk_form"):
         
     company_name = st.text_input("기업명 (선택)")
 
-    # 개인정보 동의 체크박스 추가
+# 💡 개인정보 동의 (자동 체크 & 상세보기 팝업)
     st.write("---")
-    privacy_agree = st.checkbox("개인정보 수집 및 이용 동의 (필수)")
-    st.markdown('<p class="privacy-text">* 수집항목: 성명, 연락처, 기업명 및 재무응답 데이터<br>* 수집목적: 진단 결과 리포트 발송 및 맞춤형 1:1 컨설팅 상담<br>* 보유기간: 상담 종료 후 6개월 보관 뒤 즉시 파기</p>', unsafe_allow_html=True)
+    colA, colB = st.columns([0.8, 0.2])
+    with colA:
+        # value=True 속성으로 접속 시 무조건 체크되어 있도록 설정
+        privacy_agree = st.checkbox("개인정보 수집 및 이용 동의 (필수)", value=True)
+    with colB:
+        # st.popover를 활용해 화면을 가리지 않는 깔끔한 팝업창 생성
+        with st.popover("약관 보기 *"):
+            st.markdown("""
+            <div class="privacy-popup-text">
+            <b>[개인정보 수집 및 이용 안내]</b><br>
+            • 수집항목: 성명, 연락처, 기업명 및 재무응답 데이터<br>
+            • 수집목적: 진단 결과 리포트 발송 및 맞춤형 1:1 상담<br>
+            • 보유기간: 상담 종료 후 6개월 보관 뒤 즉시 파기
+            </div>
+            """, unsafe_allow_html=True)
 
     submit_button = st.form_submit_button("🚨 리스크 점수 확인 및 리포트 신청하기")
 
